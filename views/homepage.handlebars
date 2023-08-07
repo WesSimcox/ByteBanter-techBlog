@@ -1,30 +1,61 @@
-{{!-- Loop over each post --}}
-{{#each posts as |post|}}
-    <div class="post">
-        <h2>{{post.title}}</h2>
-        <div class="post-details">
-            <p>By {{post.user.username}} | Created on {{post.date}}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Unique Blog</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="my-container">
+        <div class="my-header">
+            <h1>Welcome to My Unique Blog</h1>
         </div>
-        <div class="post-content">
-            <p>{{post.body}}</p>
+        <div class="my-nav">
+            <!-- Conditional Rendering for login and logout -->
+            {{#if logged_in}}
+                <a href="#" id="logout">Logout</a>
+            {{else}}
+                <a href="/login">Login</a>
+            {{/if}}
+            <ul>
+                <li><a href="/">Home</a></li>
+            </ul>
         </div>
-        <div class="post-actions">
-            <form class="comment-form" action="/comment" method="POST">
-                <input type="text" name="comment" placeholder="Add a comment">
-                <input type="hidden" name="post_id" value="{{post.id}}">
-                <button type="submit">Comment</button>
-            </form>
-            <form class="edit-form" action="/edit" method="POST">
-                <input type="text" name="title" value="{{post.title}}" placeholder="New title">
-                <input type="text" name="body" value="{{post.body}}" placeholder="New body">
-                <input type="hidden" name="post_id" value="{{post.id}}">
-                <button type="submit">Edit</button>
-            </form>
-            <form class="delete-form" action="/delete" method="POST">
-                <input type="hidden" name="post_id" value="{{post.id}}">
-                <button type="submit">Delete</button>
-            </form>
+        <div class="my-content">
+            {{#each posts as |post_content|}}
+                <div class="my-post">
+                    <h2>{{title}}</h2>
+                    <p>{{body}}</p>
+                    <p>By {{user.username}}</p>
+                    <p>Created on {{format_date created_at}}</p>
+                    <hr>
+                    <form action="/comment" method="POST">
+                        <input type="text" name="comment" placeholder="Add a comment">
+                        <input type="hidden" name="post_id" value="{{id}}">
+                        <button type="submit">Comment</button>
+                    </form>
+                    <form action="/edit" method="POST">
+                        <input type="text" name="title" value="{{title}}">
+                        <input type="text" name="body" value="{{body}}">
+                        <input type="hidden" name="post_id" value="{{id}}">
+                        <button type="submit">Edit</button>
+                    </form>
+                    <form action="/delete" method="POST">
+                        <input type="hidden" name="post_id" value="{{id}}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            {{/each}}
         </div>
-        <hr>
+        <!-- Script for users who are logged in points to custom-logout.js -->
+        {{#if logged_in}}
+            <script src="./custom-logout.js"></script>
+        {{/if}}
+        <div class="my-footer">
+            <p>&copy; 2023 - My Unique Blog</p>
+        </div>
     </div>
-{{/each}}
+</body>
+</html>
