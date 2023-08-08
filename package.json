@@ -8,5 +8,23 @@
     "express-session": "^1.17.3",
     "mysql2": "^3.6.0",
     "sequelize": "^6.32.1"
-  }
+  },
+  "name": "bytebanter",
+  "description": "A simple tech blog to discuss technology",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WesSimcox/ByteBanter-techBlog.git"
+  },
+  "author": "Wes Simcox",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WesSimcox/ByteBanter-techBlog/issues"
+  },
+  "homepage": "https://github.com/WesSimcox/ByteBanter-techBlog#readme"
 }

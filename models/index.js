@@ -1,6 +1,6 @@
-const User = require('./user');
-const Post = require('./post');
-const View = require('./view');
+const User = require('./User');
+const Post = require('./Posts');
+const View = require('./View');
 
 // User associations
 User.hasMany(Post, { foreignKey: 'user_id' });
